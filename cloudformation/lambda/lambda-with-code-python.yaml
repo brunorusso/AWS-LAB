@@ -1,0 +1,42 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: "LAMBDA via Cloudformation"
+Parameters:
+  Runtime:
+    Description: "Para este exemplo, usaremos python"
+    Type: String
+    Default: python3.7
+  FunctionName:
+    Description: "Nome da Funcao Lambda"
+    Type: String
+    Default: "Primeira-Lambda"
+  Role:
+    Description: "ARN da role que tem permissao de execucao"
+    Type: String
+    Default: "YOUR ARN NUMBER"
+  Description:
+    Description: "Descricao da Lambda"
+    Type: String
+    Default: "Teste de Lambda via Cloudformation"
+  Handler:
+    Description: "Informacao sobre o amnipulador"
+    Type: String
+    Default: "index.lambda_handler"
+Resources:
+    testelambda:
+      Type: AWS::Lambda::Function
+      Properties:
+        Code:
+          ZipFile: !Sub |
+            import json
+            print('Loading function')
+            def lambda_handler(event, context):
+                print("Hello World")
+        Runtime: !Ref Runtime
+        Description: !Ref Description
+        FunctionName: !Ref FunctionName
+        Handler: !Ref Handler
+        Role: !Ref Role
+Outputs:
+  NomeLambda:
+    Value: !Ref FunctionName
+    Description: "Nome da Lambda Criada"

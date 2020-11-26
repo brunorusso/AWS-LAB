@@ -1,41 +1,167 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: "RDS via Cloudformation"
+Type: AWS::RDS::DBCluster
 Parameters:
-  Runtime:
-    Description: "Para este exemplo, usaremos python"
+  AssociatedRoles:
+    Description: "xxxxx"
     Type: String
     Default: python3.7
-  FunctionName:
-    Description: "Nome da Funcao Lambda"
+  AvailabilityZones:
+    Description: "xxxxx"
     Type: String
-    Default: "Primeira-Lambda"
-  Role:
-    Description: "ARN da role que tem permissao de execucao"
+    Default: python3.7
+  BacktrackWindow: Long
+  BackupRetentionPeriod:
+    Description: "xxxxx"
+    Type: Integer
+    Default: python3.7
+  DatabaseName:
+    Description: "xxxxx"
     Type: String
-    Default: "YOUR ARN NUMBER"
-  Description:
-    Description: "Descricao da Lambda"
+    Default: python3.7
+  DBClusterIdentifier:
+    Description: "xxxxx"
     Type: String
-    Default: "Teste de Lambda via Cloudformation"
-  Handler:
-    Description: "Informacao sobre o amnipulador"
+    Default: python3.7
+  DBClusterParameterGroupName:
+    Description: "xxxxx"
     Type: String
-    Default: "index.lambda_handler"
+    Default: python3.7
+  DBSubnetGroupName:
+    Description: "xxxxx"
+    Type: String
+    Default: python3.7
+  DeletionProtection: Boolean
+  EnableCloudwatchLogsExports:
+    Description: "xxxxx"
+    Type: String
+    Default: python3.7
+  EnableHttpEndpoint: Boolean
+  EnableIAMDatabaseAuthentication: Boolean
+  Engine:
+    Description: "xxxxx"
+    Type: String
+    Default: python3.7
+  EngineMode:
+    Description: "xxxxx"
+    Type: String
+    Default: python3.7
+  EngineVersion:
+    Description: "xxxxx"
+    Type: String
+    Default: python3.7
+  KmsKeyId:
+    Description: "xxxxx"
+    Type: String
+    Default: python3.7
+  MasterUsername:
+    Description: "xxxxx"
+    Type: String
+    Default: python3.7
+  MasterUserPassword:
+    Description: "xxxxx"
+    Type: String
+    Default: python3.7
+  Port:
+    Description: "xxxxx"
+    Type: Integer
+    Default: python3.7
+  PreferredBackupWindow:
+    Description: "xxxxx"
+    Type: String
+    Default: python3.7
+  PreferredMaintenanceWindow:
+    Description: "xxxxx"
+    Type: String
+    Default: python3.7
+  ReplicationSourceIdentifier:
+    Description: "xxxxx"
+    Type: String
+    Default: python3.7
+  RestoreType:
+    Description: "xxxxx"
+    Type: String
+    Default: python3.7
+  ScalingConfiguration:
+    ScalingConfiguration
+  SnapshotIdentifier:
+    Description: "xxxxx"
+    Type: String
+    Default: python3.7
+  SourceDBClusterIdentifier:
+    Description: "xxxxx"
+    Type: String
+    Default: python3.7
+  SourceRegion:
+    Description: "xxxxx"
+    Type: String
+    Default: python3.7
+  StorageEncrypted: Boolean
+  Tags:
+    - Tag
+  UseLatestRestorableTime: Boolean
+  VpcSecurityGroupIds:
+    Description: "xxxxx"
+    Type: String
+    Default: python3.7
+
 Resources:
     testelambda:
       Type: AWS::Lambda::Function
       Properties:
-        Code:
-          ZipFile: !Sub |
-            import json
-            print('Loading function')
-            def lambda_handler(event, context):
-                print("Hello World")
-        Runtime: !Ref Runtime
-        Description: !Ref Description
-        FunctionName: !Ref FunctionName
-        Handler: !Ref Handler
-        Role: !Ref Role
+        AllocatedStorage:
+        AllowMajorVersionUpgrade: Boolean
+        AssociatedRoles:
+        AutoMinorVersionUpgrade: Boolean
+        AvailabilityZone: String
+        BackupRetentionPeriod: Integer
+        CACertificateIdentifier: String
+        CharacterSetName: String
+        CopyTagsToSnapshot: Boolean
+        DBClusterIdentifier: String
+        DBInstanceClass: String
+        DBInstanceIdentifier: String
+        DBName: String
+        DBParameterGroupName: String
+        DBSecurityGroups:
+        DBSnapshotIdentifier: String
+        DBSubnetGroupName: String
+        DeleteAutomatedBackups: Boolean
+        DeletionProtection: Boolean
+        Domain: String
+        DomainIAMRoleName: String
+        EnableCloudwatchLogsExports:
+        EnableIAMDatabaseAuthentication: Boolean
+        EnablePerformanceInsights: Boolean
+        Engine: String
+        EngineVersion: String
+        Iops: Integer
+        KmsKeyId: String
+        LicenseModel: String
+        MasterUsername: String
+        MasterUserPassword: String
+        MaxAllocatedStorage: Integer
+        MonitoringInterval: Integer
+        MonitoringRoleArn: String
+        MultiAZ: Boolean
+        OptionGroupName: String
+        PerformanceInsightsKMSKeyId: String
+        PerformanceInsightsRetentionPeriod: Integer
+        Port: String
+        PreferredBackupWindow: String
+        PreferredMaintenanceWindow: String
+        ProcessorFeatures:
+        PromotionTier: Integer
+        PubliclyAccessible: Boolean
+        SourceDBInstanceIdentifier: String
+        SourceRegion: String
+        StorageEncrypted: Boolean
+        StorageType: String
+        Tags:
+        Timezone: String
+        UseDefaultProcessorFeatures: Boolean
+        VPCSecurityGroups:
+
 Outputs:
   NomeLambda:
     Value: !Ref FunctionName

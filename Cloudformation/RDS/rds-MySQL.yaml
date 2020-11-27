@@ -2,167 +2,161 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: "RDS via Cloudformation"
 Type: AWS::RDS::DBCluster
 Parameters:
-  AssociatedRoles:
-    Description: "xxxxx"
-    Type: String
-    Default: python3.7
+  AllocatedStorage:
+    Description ""
+    Type:
+    Value:
+  AllowMajorVersionUpgrade: 
+    Description: ""
+    Type:
+    Value:
+  AutoMinorVersionUpgrade:
+    Description: ""
+    Type:
+    Value:
   AvailabilityZones:
     Description: "xxxxx"
     Type: String
-    Default: python3.7
-  BacktrackWindow: Long
+    Value: python3.7
   BackupRetentionPeriod:
     Description: "xxxxx"
     Type: Integer
-    Default: python3.7
-  DatabaseName:
-    Description: "xxxxx"
-    Type: String
-    Default: python3.7
+    Value: python3.7
   DBClusterIdentifier:
     Description: "xxxxx"
     Type: String
-    Default: python3.7
-  DBClusterParameterGroupName:
-    Description: "xxxxx"
-    Type: String
-    Default: python3.7
+    Value: python3.7
+  DBInstanceClass:
+    Description: ""
+    Type:
+    Value:
+  DBInstanceIdentifier:
+    Description: ""
+    Type:
+    Default:
+  DBName:
+    Description: ""
+    Type: 
+    Default:
   DBSubnetGroupName:
     Description: "xxxxx"
     Type: String
     Default: python3.7
-  DeletionProtection: Boolean
+  DeleteAutomatedBackups:
+    Description: ""
+    Type:
+    Default:
+  DeletionProtection:
+    Description: ""
+    Type:
+    Value:
   EnableCloudwatchLogsExports:
     Description: "xxxxx"
     Type: String
-    Default: python3.7
-  EnableHttpEndpoint: Boolean
-  EnableIAMDatabaseAuthentication: Boolean
+    Value: python3.7
+  EnablePerformanceInsights:
+    Description: ""
+    Type:
+    Value:
   Engine:
     Description: "xxxxx"
     Type: String
-    Default: python3.7
-  EngineMode:
-    Description: "xxxxx"
-    Type: String
-    Default: python3.7
+    Value: python3.7
   EngineVersion:
     Description: "xxxxx"
     Type: String
-    Default: python3.7
+    Value: python3.7
   KmsKeyId:
     Description: "xxxxx"
     Type: String
-    Default: python3.7
+    Value: python3.7
   MasterUsername:
     Description: "xxxxx"
     Type: String
-    Default: python3.7
+    Value: python3.7
   MasterUserPassword:
     Description: "xxxxx"
     Type: String
-    Default: python3.7
+    Value: python3.7
+  MaxAllocatedStorage:
+    Description: ""
+    Type: 
+    Value:
+  MultiAZ:
+    Description: ""
+    Type:
+    Value:
   Port:
     Description: "xxxxx"
     Type: Integer
-    Default: python3.7
+    Value: python3.7
   PreferredBackupWindow:
     Description: "xxxxx"
     Type: String
-    Default: python3.7
+    Value: python3.7
   PreferredMaintenanceWindow:
     Description: "xxxxx"
     Type: String
-    Default: python3.7
-  ReplicationSourceIdentifier:
-    Description: "xxxxx"
-    Type: String
-    Default: python3.7
-  RestoreType:
-    Description: "xxxxx"
-    Type: String
-    Default: python3.7
-  ScalingConfiguration:
-    ScalingConfiguration
-  SnapshotIdentifier:
-    Description: "xxxxx"
-    Type: String
-    Default: python3.7
-  SourceDBClusterIdentifier:
-    Description: "xxxxx"
-    Type: String
-    Default: python3.7
-  SourceRegion:
-    Description: "xxxxx"
-    Type: String
-    Default: python3.7
-  StorageEncrypted: Boolean
+    Value: python3.7
+  PromotionTier:
+    Description: ""
+    Type: 
+    Value:
+  PubliclyAccessible:
+    Description: ""
+    Type:
+    Value: 
+  StorageEncrypted:
+    Description: ""
+    Type: 
+    Value:
+  StorageType:
+    Description: ""
+    Type:
+    Value:
   Tags:
     - Tag
-  UseLatestRestorableTime: Boolean
   VpcSecurityGroupIds:
     Description: "xxxxx"
     Type: String
-    Default: python3.7
+    Value: python3.7
 
 Resources:
     testelambda:
-      Type: AWS::Lambda::Function
+      Type: AWS::RDS::DBInstance
       Properties:
-        AllocatedStorage:
-        AllowMajorVersionUpgrade: Boolean
-        AssociatedRoles:
-        AutoMinorVersionUpgrade: Boolean
-        AvailabilityZone: String
-        BackupRetentionPeriod: Integer
-        CACertificateIdentifier: String
-        CharacterSetName: String
-        CopyTagsToSnapshot: Boolean
-        DBClusterIdentifier: String
-        DBInstanceClass: String
-        DBInstanceIdentifier: String
-        DBName: String
-        DBParameterGroupName: String
-        DBSecurityGroups:
-        DBSnapshotIdentifier: String
-        DBSubnetGroupName: String
-        DeleteAutomatedBackups: Boolean
-        DeletionProtection: Boolean
-        Domain: String
-        DomainIAMRoleName: String
-        EnableCloudwatchLogsExports:
-        EnableIAMDatabaseAuthentication: Boolean
-        EnablePerformanceInsights: Boolean
-        Engine: String
-        EngineVersion: String
-        Iops: Integer
-        KmsKeyId: String
-        LicenseModel: String
-        MasterUsername: String
-        MasterUserPassword: String
-        MaxAllocatedStorage: Integer
-        MonitoringInterval: Integer
-        MonitoringRoleArn: String
-        MultiAZ: Boolean
-        OptionGroupName: String
-        PerformanceInsightsKMSKeyId: String
-        PerformanceInsightsRetentionPeriod: Integer
-        Port: String
-        PreferredBackupWindow: String
-        PreferredMaintenanceWindow: String
-        ProcessorFeatures:
-        PromotionTier: Integer
-        PubliclyAccessible: Boolean
-        SourceDBInstanceIdentifier: String
-        SourceRegion: String
-        StorageEncrypted: Boolean
-        StorageType: String
-        Tags:
-        Timezone: String
-        UseDefaultProcessorFeatures: Boolean
-        VPCSecurityGroups:
+        AllocatedStorage: !Ref AllocatedStorage
+        AllowMajorVersionUpgrade: !Ref AllowMajorVersionUpgrade
+        AutoMinorVersionUpgrade: !Ref AutoMinorVersionUpgrade
+        AvailabilityZone: !Ref AvailabilityZone
+        BackupRetentionPeriod: !Ref BackupRetentionPeriod
+        DBClusterIdentifier: !Ref DBClusterIdentifier
+        DBInstanceClass: !Ref DBInstanceClass
+        DBInstanceIdentifier: !Ref DBInstanceIdentifier
+        DBName: !Ref DBName
+        DBSubnetGroupName: !Ref DBSubnetGroupName
+        DeleteAutomatedBackups: !Ref DeleteAutomatedBackups
+        DeletionProtection: !Ref DeletionProtection
+        EnableCloudwatchLogsExports: !Ref EnableCloudwatchLogsExports
+        EnablePerformanceInsights: !Ref EnablePerformanceInsights
+        Engine: !Ref Engine
+        EngineVersion: !Ref EngineVersion
+        KmsKeyId: !Ref KmsKeyId
+        MasterUsername: !Ref MasterUsername
+        MasterUserPassword: !Ref MasterUserPassword
+        MaxAllocatedStorage: !Ref MaxAllocatedStorage
+        MultiAZ: !Ref MultiAZ
+        Port: !Ref Port
+        PreferredBackupWindow: !Ref PreferredBackupWindow
+        PreferredMaintenanceWindow: !Ref PreferredMaintenanceWindow
+        PromotionTier: !Ref PromotionTier
+        PubliclyAccessible: !Ref PubliclyAccessible
+        StorageEncrypted: !Ref StorageEncrypted
+        StorageType: !Ref StorageType
+        Tags: !Ref Tags
+        VPCSecurityGroups: !Rev VPCSecurityGroups
 
 Outputs:
-  NomeLambda:
-    Value: !Ref FunctionName
-    Description: "Nome da Lambda Criada"
+  DataBase:
+    Value: !Ref DBName
+    Description: "Banco de Dados Criado"

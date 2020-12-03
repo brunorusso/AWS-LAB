@@ -3,117 +3,105 @@ Description: "RDS via Cloudformation"
 Type: AWS::RDS::DBCluster
 Parameters:
   AllocatedStorage:
-    Description ""
-    Type:
-    Value:
+    Description: Tamanho do storage inicial alocado
+    Type: String
+    Value: 5
   AllowMajorVersionUpgrade: 
-    Description: ""
-    Type:
-    Value:
+    Description: Permite que atualizacoes Major sejam aplicadas no Banco de Dados
+    Type: Boolean
+    Value: True
   AutoMinorVersionUpgrade:
-    Description: ""
-    Type:
-    Value:
+    Description: Permite que atualizacoes Minor sejam aplicadas no Banco de Dados
+    Type: Boolean
+    Value: True
   AvailabilityZones:
-    Description: "xxxxx"
+    Description: Define a zonda de disponibilidade que o banco sera criado
     Type: String
-    Value: python3.7
+    Value: us-east-1
   BackupRetentionPeriod:
-    Description: "xxxxx"
+    Description: Numero de dias que os backups serao retidos automaticamente
     Type: Integer
-    Value: python3.7
-  DBClusterIdentifier:
-    Description: "xxxxx"
-    Type: String
-    Value: python3.7
+    Value: 2
   DBInstanceClass:
-    Description: ""
-    Type:
-    Value:
+    Description: Capacidade de computacao e memoria
+    Type: String
+    Value: db.t2.micro
   DBInstanceIdentifier:
-    Description: ""
-    Type:
-    Default:
+    Description: Nome para a Instancia do Banco de Dados
+    Type: String
+    Default: EC2-Banco-Dados
   DBName:
-    Description: ""
-    Type: 
-    Default:
+    Description: Nome do Banco de Dados (precisa estar em minusculo)
+    Type: String
+    Default: rdsmysql
   DBSubnetGroupName:
-    Description: "xxxxx"
+    Description: Grupo de rede do Banco de Dados que estara associado a Instancia
     Type: String
-    Default: python3.7
+    Default: XXXX
   DeleteAutomatedBackups:
-    Description: ""
-    Type:
-    Default:
+    Description: Informa se os Backups do Banco de Dados, serao excluidos automaticamente ou nao apos a exclusao dos recursos
+    Type: Boolean
+    Default: False
   DeletionProtection:
-    Description: ""
-    Type:
-    Value:
+    Description: Habilita a protecao contra exclusao
+    Type: Boolean
+    Value: False
   EnableCloudwatchLogsExports:
-    Description: "xxxxx"
-    Type: String
-    Value: python3.7
+    Description: Tipos de dados que serao exportados para o Cloudwatch
+    Type: List
+    Value: [general, error]
   EnablePerformanceInsights:
-    Description: ""
-    Type:
-    Value:
+    Description: Habilita o PerfoemanceInsights na instancia do Banco de Dados
+    Type: Boolean
+    Value: True
   Engine:
-    Description: "xxxxx"
+    Description: Tipo do Banco de Dados
     Type: String
-    Value: python3.7
+    Value: mysql
   EngineVersion:
-    Description: "xxxxx"
+    Description: Versao da Engine do Banco de Dados que sera utilizada
     Type: String
-    Value: python3.7
+    Value: 8.0.21
   KmsKeyId:
-    Description: "xxxxx"
+    Description: ARN da chave do KMS que sera usada ara criptografar a instancia do Banco de Dados
     Type: String
-    Value: python3.7
+    Value: aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef
   MasterUsername:
-    Description: "xxxxx"
+    Description: Nome do usuario principal (root) da Instancia
     Type: String
-    Value: python3.7
+    Value: dbadmin
   MasterUserPassword:
-    Description: "xxxxx"
+    Description: Senha do usuario principal
     Type: String
-    Value: python3.7
+    Value: adminmysql
   MaxAllocatedStorage:
-    Description: ""
-    Type: 
-    Value:
+    Description: Limite superior para qual o Banco de Dados pode escalar automaticamente
+    Type: String
+    Value: 1
   MultiAZ:
-    Description: ""
-    Type:
-    Value:
+    Description: Define se o Banco de dados sera implementado em varias zonas de disponibilidade ou nao
+    Type: Boolean
+    Value: False
   Port:
-    Description: "xxxxx"
+    Description: Numero da porta na qual o Banco de Dados ira aceitar as conexões
     Type: Integer
-    Value: python3.7
+    Value: 3306
   PreferredBackupWindow:
-    Description: "xxxxx"
+    Description: Intervalo de tempo que sera usado para criar os backups
     Type: String
     Value: python3.7
   PreferredMaintenanceWindow:
-    Description: "xxxxx"
+    Description: Periodo semanal que podera ocorrer uma manutencao no Banco de Dados
     Type: String
-    Value: python3.7
-  PromotionTier:
-    Description: ""
-    Type: 
-    Value:
-  PubliclyAccessible:
-    Description: ""
-    Type:
-    Value: 
+    Value: 03:00-05:45
   StorageEncrypted:
-    Description: ""
-    Type: 
-    Value:
+    Description: Indica se a instancia do Banco de Dados e ou nao criptografada
+    Type: Boolean
+    Value: True
   StorageType:
-    Description: ""
-    Type:
-    Value:
+    Description: Tipo de armazenamento utilizado na instancia
+    Type: String
+    Value: standard
   Tags:
     - Tag
   VpcSecurityGroupIds:
@@ -130,7 +118,6 @@ Resources:
         AutoMinorVersionUpgrade: !Ref AutoMinorVersionUpgrade
         AvailabilityZone: !Ref AvailabilityZone
         BackupRetentionPeriod: !Ref BackupRetentionPeriod
-        DBClusterIdentifier: !Ref DBClusterIdentifier
         DBInstanceClass: !Ref DBInstanceClass
         DBInstanceIdentifier: !Ref DBInstanceIdentifier
         DBName: !Ref DBName
@@ -149,8 +136,6 @@ Resources:
         Port: !Ref Port
         PreferredBackupWindow: !Ref PreferredBackupWindow
         PreferredMaintenanceWindow: !Ref PreferredMaintenanceWindow
-        PromotionTier: !Ref PromotionTier
-        PubliclyAccessible: !Ref PubliclyAccessible
         StorageEncrypted: !Ref StorageEncrypted
         StorageType: !Ref StorageType
         Tags: !Ref Tags

@@ -1,147 +1,110 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: "RDS via Cloudformation"
-Type: AWS::RDS::DBCluster
+Description: 'RDS via Cloudformation'
+
 Parameters:
   AllocatedStorage:
-    Description: Tamanho do storage inicial alocado
-    Type: String
-    Value: 5
+    Description: 'Tamanho do storage inicial alocado'
+    Type: Number
+    Default: '5'
   AllowMajorVersionUpgrade: 
-    Description: Permite que atualizacoes Major sejam aplicadas no Banco de Dados
-    Type: Boolean
-    Value: True
+    Description: 'Permite que atualizacoes Major sejam aplicadas no Banco de Dados'
+    Type: String
+    Default: 'True'
   AutoMinorVersionUpgrade:
-    Description: Permite que atualizacoes Minor sejam aplicadas no Banco de Dados
-    Type: Boolean
-    Value: True
-  AvailabilityZones:
-    Description: Define a zonda de disponibilidade que o banco sera criado
+    Description: 'Permite que atualizacoes Minor sejam aplicadas no Banco de Dados'
     Type: String
-    Value: us-east-1
+    Default: 'True'
   BackupRetentionPeriod:
-    Description: Numero de dias que os backups serao retidos automaticamente
-    Type: Integer
-    Value: 2
+    Description: 'Numero de dias que os backups serao retidos automaticamente'
+    Type: Number
+    Default: 2
   DBInstanceClass:
-    Description: Capacidade de computacao e memoria
+    Description: 'Capacidade de computacao e memoria'
     Type: String
-    Value: db.t2.micro
+    Default: 'db.t3.micro'
   DBInstanceIdentifier:
-    Description: Nome para a Instancia do Banco de Dados
+    Description: 'Nome para a Instancia do Banco de Dados'
     Type: String
-    Default: EC2-Banco-Dados
+    Default: 'EC2-Banco-Dados'
   DBName:
-    Description: Nome do Banco de Dados (precisa estar em minusculo)
+    Description: 'Nome do Banco de Dados (precisa estar em minusculo)'
     Type: String
-    Default: rdsmysql
-  DBSubnetGroupName:
-    Description: Grupo de rede do Banco de Dados que estara associado a Instancia
-    Type: String
-    Default: XXXX
+    Default: 'rdsmysql'
   DeleteAutomatedBackups:
-    Description: Informa se os Backups do Banco de Dados, serao excluidos automaticamente ou nao apos a exclusao dos recursos
-    Type: Boolean
-    Default: False
+    Description: 'Informa se os Backups do Banco de Dados, serao excluidos automaticamente ou nao apos a exclusao dos recursos'
+    Type: String
+    Default: 'False'
   DeletionProtection:
-    Description: Habilita a protecao contra exclusao
-    Type: Boolean
-    Value: False
-  EnableCloudwatchLogsExports:
-    Description: Tipos de dados que serao exportados para o Cloudwatch
-    Type: List
-    Value: [general, error]
-  EnablePerformanceInsights:
-    Description: Habilita o PerfoemanceInsights na instancia do Banco de Dados
-    Type: Boolean
-    Value: True
+    Description: 'Habilita a protecao contra exclusao'
+    Type: String
+    Default: 'False'
   Engine:
-    Description: Tipo do Banco de Dados
+    Description: 'Tipo do Banco de Dados'
     Type: String
-    Value: mysql
+    Default: 'mysql'
   EngineVersion:
-    Description: Versao da Engine do Banco de Dados que sera utilizada
+    Description: 'Versao da Engine do Banco de Dados que sera utilizada'
     Type: String
-    Value: 8.0.21
-  KmsKeyId:
-    Description: ARN da chave do KMS que sera usada ara criptografar a instancia do Banco de Dados
-    Type: String
-    Value: aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef
+    Default: '8.0.21'
   MasterUsername:
-    Description: Nome do usuario principal (root) da Instancia
+    Description: 'Nome do usuario principal (root) da Instancia'
     Type: String
-    Value: dbadmin
+    Default: 'dbadmin'
   MasterUserPassword:
-    Description: Senha do usuario principal
+    Description: 'Senha do usuario principal'
     Type: String
-    Value: adminmysql
-  MaxAllocatedStorage:
-    Description: Limite superior para qual o Banco de Dados pode escalar automaticamente
-    Type: String
-    Value: 1
+    Default: 'adminmysql'
   MultiAZ:
-    Description: Define se o Banco de dados sera implementado em varias zonas de disponibilidade ou nao
-    Type: Boolean
-    Value: False
+    Description: 'Define se o Banco de dados sera implementado em varias zonas de disponibilidade ou nao'
+    Type: String
+    Default: 'False'
   Port:
-    Description: Numero da porta na qual o Banco de Dados ira aceitar as conexões
-    Type: Integer
-    Value: 3306
+    Description: 'Numero da porta na qual o Banco de Dados ira aceitar as conexoes'
+    Type: Number
+    Default: 3306
   PreferredBackupWindow:
-    Description: Intervalo de tempo que sera usado para criar os backups
+    Description: 'Intervalo de tempo que sera usado para criar os backups'
     Type: String
-    Value: python3.7
+    Default: '01:00-02:45'
   PreferredMaintenanceWindow:
-    Description: Periodo semanal que podera ocorrer uma manutencao no Banco de Dados
+    Description: 'Periodo semanal que podera ocorrer uma manutencao no Banco de Dados'
     Type: String
-    Value: 03:00-05:45
+    Default: 'Mon:03:00-Mon:05:00'
   StorageEncrypted:
-    Description: Indica se a instancia do Banco de Dados e ou nao criptografada
-    Type: Boolean
-    Value: True
+    Description: 'Indica se a instancia do Banco de Dados e ou nao criptografada'
+    Type: String
+    Default: 'True'
   StorageType:
-    Description: Tipo de armazenamento utilizado na instancia
+    Description: 'Tipo de armazenamento utilizado na instancia'
     Type: String
-    Value: standard
-  Tags:
-    - Tag
-  VpcSecurityGroupIds:
-    Description: "xxxxx"
-    Type: String
-    Value: python3.7
+    Default: 'standard'
 
 Resources:
-    testelambda:
-      Type: AWS::RDS::DBInstance
-      Properties:
-        AllocatedStorage: !Ref AllocatedStorage
-        AllowMajorVersionUpgrade: !Ref AllowMajorVersionUpgrade
-        AutoMinorVersionUpgrade: !Ref AutoMinorVersionUpgrade
-        AvailabilityZone: !Ref AvailabilityZone
-        BackupRetentionPeriod: !Ref BackupRetentionPeriod
-        DBInstanceClass: !Ref DBInstanceClass
-        DBInstanceIdentifier: !Ref DBInstanceIdentifier
-        DBName: !Ref DBName
-        DBSubnetGroupName: !Ref DBSubnetGroupName
-        DeleteAutomatedBackups: !Ref DeleteAutomatedBackups
-        DeletionProtection: !Ref DeletionProtection
-        EnableCloudwatchLogsExports: !Ref EnableCloudwatchLogsExports
-        EnablePerformanceInsights: !Ref EnablePerformanceInsights
-        Engine: !Ref Engine
-        EngineVersion: !Ref EngineVersion
-        KmsKeyId: !Ref KmsKeyId
-        MasterUsername: !Ref MasterUsername
-        MasterUserPassword: !Ref MasterUserPassword
-        MaxAllocatedStorage: !Ref MaxAllocatedStorage
-        MultiAZ: !Ref MultiAZ
-        Port: !Ref Port
-        PreferredBackupWindow: !Ref PreferredBackupWindow
-        PreferredMaintenanceWindow: !Ref PreferredMaintenanceWindow
-        StorageEncrypted: !Ref StorageEncrypted
-        StorageType: !Ref StorageType
-        Tags: !Ref Tags
-        VPCSecurityGroups: !Rev VPCSecurityGroups
+  RDInstance:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      AllocatedStorage: !Ref AllocatedStorage
+      AllowMajorVersionUpgrade: !Ref AllowMajorVersionUpgrade
+      AutoMinorVersionUpgrade: !Ref AutoMinorVersionUpgrade
+      BackupRetentionPeriod: !Ref BackupRetentionPeriod
+      DBInstanceClass: !Ref DBInstanceClass
+      DBInstanceIdentifier: !Ref DBInstanceIdentifier
+      DBName: !Ref DBName
+      DeleteAutomatedBackups: !Ref DeleteAutomatedBackups
+      DeletionProtection: !Ref DeletionProtection
+      Engine: !Ref Engine
+      EngineVersion: !Ref EngineVersion
+      MasterUsername: !Ref MasterUsername
+      MasterUserPassword: !Ref MasterUserPassword
+      MultiAZ: !Ref MultiAZ
+      Port: !Ref Port
+      PreferredBackupWindow: !Ref PreferredBackupWindow
+      PreferredMaintenanceWindow: !Ref PreferredMaintenanceWindow
+      StorageEncrypted: !Ref StorageEncrypted
+      StorageType: !Ref StorageType
+
 
 Outputs:
-  DataBase:
+  RDSInstance:
     Value: !Ref DBName
-    Description: "Banco de Dados Criado"
+    Description: 'Banco de Dados Criado'

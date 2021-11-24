@@ -60,7 +60,7 @@ resource "aws_instance" "mysql" {
   
   subnet_id = var.subnet_id
 
-  associate_public_ip_address = true
+  associate_public_ip_address = false
 
   user_data = filebase64("instala.sh")
   

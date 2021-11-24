@@ -5,7 +5,7 @@ variable "vpc_id" {
 
 variable "subnet_id" {
   type = string
-  default = "subnet-02990c5c850e1fbc5"
+  default = "subnet-092b12a9fa786bdef"
 }
 
 variable "ami" {

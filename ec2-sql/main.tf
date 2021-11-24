@@ -56,9 +56,9 @@ resource "aws_instance" "mysql" {
     kms_key_id = var.kms_ebs
   }
 
-#  vpc_security_group_ids = [aws_security_group.Acesso_MYSQL.id]
+  vpc_security_group_ids = [aws_security_group.Acesso_MYSQL.id]
   
-#  subnet_id = var.subnet_id
+  subnet_id = var.subnet_id
 
   associate_public_ip_address = true
 

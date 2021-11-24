@@ -1,9 +1,9 @@
 #!/bin/bash
 
-cd AWS-LAB/ec2-sql
+cd ec2-sql
 
 terraform init
 
 terraform apply -auto-approve
 
-echo "Banco de Dads criado com sucesso"
+echo "Banco de Dados criado com sucesso"

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ec2-sql
+cd AWS-LAB/ec2-sql
 
 terraform init
 

@@ -10,7 +10,7 @@ resource "aws_security_group" "Acesso_MYSQL" {
   ingress = [
     {
       description      = "Acesso MYSQL"
-      from_port        = "3306"
+      from_port        = "22"
       to_port          = "3306"
       protocol         = "tcp"
       cidr_blocks      = ["0.0.0.0/0"]

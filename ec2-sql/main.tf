@@ -52,6 +52,8 @@ resource "aws_instance" "mysql" {
   ebs_block_device {
     device_name = "/dev/sda1"
     volume_size = 8
+    encrypted = true
+    kms_key_id = var.kms_ebs
   }
 
   vpc_security_group_ids = [aws_security_group.Acesso_MYSQL.id]
